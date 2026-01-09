@@ -1,53 +1,121 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Agentforce Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pets @ Home</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            text-align: center;
+        }
+        .header-links {
+            text-align: right;
+            padding: 10px 20px;
+        }
+        .header-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #5f6368;
+            font-size: 14px;
+        }
+        .logo {
+            margin-top: 100px;
+        }
+        .logo h1 {
+            font-size: 80px;
+            font-weight: normal;
+            margin-bottom: 30px;
+        }
+        .search-box {
+            width: 60%;
+            max-width: 600px;
+            padding: 12px 28px;
+            border: 1px solid #dadce0;
+            border-radius: 24px;
+            font-size: 16px;
+            outline: none;
+            box-shadow: none;
+        }
+        .buttons {
+            margin-top: 30px;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f2f2f2;
+            padding: 10px 0;
+            font-size: 14px;
+            color: #5f6368;
+        }
+        footer .footer-links {
+            display: flex;
+            justify-content: space-between;
+            max-width: 900px;
+            margin: auto;
+        }
+        footer .footer-links a {
+            margin: 0 15px;
+            color: #5f6368;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
+    <!-- Header Links -->
+    <div class="header-links">
+        <a href="#">My Orders</a>
+        <a href="#">Images</a>
+    </div>
 
-  <h2>Test Your Salesforce Agentforce Service Agent</h2>
+    <!-- Logo -->
+    <div class="logo">
+        <h1>
+            <span style="color: #4285F4;">G</span>
+            <span style="color: #EA4335;">o</span>
+            <span style="color: #FBBC05;">o</span>
+            <span style="color: #4285F4;">g</span>
+            <span style="color: #34A853;">l</span>
+            <span style="color: #EA4335;">e</span>
+        </h1>
+    </div>
 
-  <input id="msg" placeholder="Type message…" style="width:250px;" />
-  <button onclick="send()">Send</button>
+    <!-- Search Box -->
+    <input type="text" class="search-box" placeholder="Search Google or type a URL" />
 
-  <div id="response" style="margin-top:20px; font-family:Arial;"></div>
+    <!-- Buttons -->
+    <div class="buttons">
+        <button>Pets Search</button>
+    </div>
 
-  <script>
-    async function send() {
-      const userText = document.getElementById("msg").value;
-      document.getElementById("response").innerHTML = "Sending...";
-
-      // -------------------------------------------------------
-      // 🔴 REPLACE THESE TWO VALUES WITH YOUR AGENTFORCE DETAILS
-      const ENDPOINT = "https://YOUR_AGENTFORCE_ENDPOINT_HERE"; 
-      const AGENT_ID = "YOUR_AGENT_ID_HERE";                     
-      // -------------------------------------------------------
-
-      const body = {
-        agentId: AGENT_ID,
-        input: userText
-      };
-
-      try {
-        const res = await fetch(ENDPOINT, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(body)
-        });
-
-        const data = await res.json();
-        document.getElementById("response").innerHTML =
-          "<strong>Agent:</strong> " + (data.output?.text || JSON.stringify(data));
-      } 
-      catch (err) {
-        document.getElementById("response").innerHTML =
-          "Error: " + err.message;
-      }
-    }
-  </script>
-
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <div>
+                <a href="#">About</a>
+                <a href="#">Advertising</a>
+                <a href="#">Business</a>
+                <a href="#">How Search Works</a>
+            </div>
+            <div>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Settings</a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
