@@ -144,7 +144,7 @@
                     scrt2URL: 'https://petsathome00001--preprod.sandbox.my.salesforce-scrt.com',
                     extraPrechatFormDetails: [
                         {
-                            label: 'accept',
+                            label: 'type',
                             value: token,
                             displayToAgent: false
                         }
@@ -163,7 +163,7 @@
             const response = await fetch(window.location.href, { method: 'GET' });
 
             // Extract the Authorization token from the headers
-            const token = response.headers.get('accept');
+            const token = response.headers.get('type');
 console.error(' Anuarg response: ', response);
             console.error(' Anuarg Authorization token: ', token);
             return token;
