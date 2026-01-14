@@ -162,6 +162,7 @@
             // Make a request to the current page to retrieve the headers
             const response = await fetch(window.location.href, { method: 'GET' });
             console.error(' fetching response: ', response);
+            console.error(' fetching headers of response: ', response.headers);
             console.error(' fetching response response.url: ', response.url);
             console.error(' fetching response response.type: ', response.type);
             // Extract the authToken value from the headers
