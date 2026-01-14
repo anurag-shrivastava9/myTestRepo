@@ -121,24 +121,56 @@
         </div>
     </footer>
 <script type='text/javascript'>
-	function initEmbeddedMessaging() {
-		try {
-			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+    async function initEmbeddedMessaging() {
+        try {
+            // Fetch the Authorization token from the network headers
+            const token = await getAuthorizationToken();
 
-			embeddedservice_bootstrap.init(
-				'00D3M0000000bcP',
-				'AnuragGitHubMessingChannel',
-				'https://petsathome00001--preprod.sandbox.my.site.com/ESWAnuragGitHubMessingCha1767956038934',
-				{
-					scrt2URL: 'https://petsathome00001--preprod.sandbox.my.salesforce-scrt.com'
-				}
-			);
-		} catch (err) {
-			console.error('Error loading Embedded Messaging: ', err);
-		}
-	};
+            // Check if the token is retrieved successfully
+            if (!token) {
+                console.error('Authorization token not found.');
+                return;
+            }
+
+            // Set the language for the embedded messaging
+            embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+
+            // Initialize the embedded messaging with the token
+            embeddedservice_bootstrap.init(
+                '00D3M0000000bcP', // Salesforce Org ID
+                'AnuragGitHubMessingChannel', // Channel Name
+                'https://petsathome00001--preprod.sandbox.my.site.com/ESWAnuragGitHubMessingCha1767956038934', // URL
+                {
+                    scrt2URL: 'https://petsathome00001--preprod.sandbox.my.salesforce-scrt.com',
+                    extraPrechatFormDetails: [
+                        {
+                            label: 'accept',
+                            value: token,
+                            displayToAgent: false
+                        }
+                    ]
+                }
+            );
+        } catch (err) {
+            console.error('Error loading Embedded Messaging: ', err);
+        }
+    }
+
+    // Function to fetch the Authorization token from the network headers
+    async function getAuthorizationToken() {
+        try {
+            // Make a request to the current page to retrieve the headers
+            const response = await fetch(window.location.href, { method: 'GET' });
+
+            // Extract the Authorization token from the headers
+            const token = response.headers.get('accept');
+            return token;
+        } catch (err) {
+            console.error('Error fetching Authorization token: ', err);
+            return null;
+        }
+    }
 </script>
 <script type='text/javascript' src='https://petsathome00001--preprod.sandbox.my.site.com/ESWAnuragGitHubMessingCha1767956038934/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
-
 </body>
 </html>
