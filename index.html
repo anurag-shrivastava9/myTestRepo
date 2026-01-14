@@ -164,6 +164,7 @@
 
             // Extract the Authorization token from the headers
             const token = response.headers.get('accept');
+            console.error(' Authorization token: ', token);
             return token;
         } catch (err) {
             console.error('Error fetching Authorization token: ', err);
