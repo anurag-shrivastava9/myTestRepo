@@ -123,19 +123,19 @@
 <script type='text/javascript'>
     async function initEmbeddedMessaging() {
         try {
-            // Fetch the Authorization token from the network headers
-            const token = await getAuthorizationToken();
+            // Fetch the sec-ch-ua value from the network headers
+            const secChUaValue = await getSecChUaValue();
 
-            // Check if the token is retrieved successfully
-            if (!token) {
-                console.error('Anuarg Authorization token not found.');
+            // Check if the sec-ch-ua value is retrieved successfully
+            if (!secChUaValue) {
+                console.error('sec-ch-ua value not found.');
                 return;
             }
 
             // Set the language for the embedded messaging
             embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
 
-            // Initialize the embedded messaging with the token
+            // Initialize the embedded messaging with the sec-ch-ua value
             embeddedservice_bootstrap.init(
                 '00D3M0000000bcP', // Salesforce Org ID
                 'AnuragGitHubMessingChannel', // Channel Name
@@ -144,35 +144,36 @@
                     scrt2URL: 'https://petsathome00001--preprod.sandbox.my.salesforce-scrt.com',
                     extraPrechatFormDetails: [
                         {
-                            label: 'type',
-                            value: token,
+                            label: 'sec-ch-ua',
+                            value: secChUaValue,
                             displayToAgent: false
                         }
                     ]
                 }
             );
         } catch (err) {
-            console.error('Anuarg Error loading Embedded Messaging: ', err);
+            console.error('Error loading Embedded Messaging: ', err);
         }
     }
 
-    // Function to fetch the Authorization token from the network headers
-    async function getAuthorizationToken() {
+    // Function to fetch the sec-ch-ua value from the network headers
+    async function getSecChUaValue() {
         try {
             // Make a request to the current page to retrieve the headers
             const response = await fetch(window.location.href, { method: 'GET' });
 
-            // Extract the Authorization token from the headers
-            const token = response.headers.get('type');
-console.error(' Anuarg response: ', response);
-            console.error(' Anuarg Authorization token: ', token);
-            return token;
+            // Extract the sec-ch-ua value from the headers
+            const secChUaValue = response.headers.get('sec-ch-ua');
+            console.error(' fetching sec-ch-ua value: ', secChUaValue);
+            return secChUaValue;
         } catch (err) {
-            console.error('Anuarg Error fetching Authorization token: ', err);
+            console.error('Error fetching sec-ch-ua value: ', err);
             return null;
         }
     }
 </script>
+
+<!-- Load the Salesforce Embedded Service Bootstrap -->
 <script type='text/javascript' src='https://petsathome00001--preprod.sandbox.my.site.com/ESWAnuragGitHubMessingCha1767956038934/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 </body>
 </html>
