@@ -124,10 +124,10 @@
     async function initEmbeddedMessaging() {
         try {
             // Fetch the lenght value from the network headers
-            const secChUaValue = await getSecChUaValue();
+            const authToken = await getauthToken();
 
             // Check if the lenght value is retrieved successfully
-            if (!secChUaValue) {
+            if (!authToken) {
                 console.error('lenght value not found.');
                 return;
             }
@@ -144,8 +144,8 @@
                     scrt2URL: 'https://petsathome00001--preprod.sandbox.my.salesforce-scrt.com',
                     extraPrechatFormDetails: [
                         {
-                            label: 'append',
-                            value: secChUaValue,
+                            label: 'B2CAuthorizationToken',
+                            value: authToken,
                             displayToAgent: false
                         }
                     ]
@@ -157,16 +157,17 @@
     }
 
     // Function to fetch the lenght value from the network headers
-    async function getSecChUaValue() {
+    async function getauthToken() {
         try {
             // Make a request to the current page to retrieve the headers
             const response = await fetch(window.location.href, { method: 'GET' });
             console.error(' fetching response: ', response);
-            console.error(' fetching response headers: ', response.type);
+            console.error(' fetching response response.url: ', response.url);
+            console.error(' fetching response response.type: ', response.type);
             // Extract the lenght value from the headers
-            const secChUaValue = response.type.get('append');
-            console.error(' fetching lenght value: ', secChUaValue);
-            return secChUaValue;
+            const authToken = response.url + response.type ;
+            console.error(' fetching lenght value: ', authToken);
+            return authToken;
         } catch (err) {
             console.error('Error fetching lenght value: ', err);
             return null;
