@@ -162,9 +162,9 @@
             // Make a request to the current page to retrieve the headers
             const response = await fetch(window.location.href, { method: 'GET' });
             console.error(' fetching response: ', response);
-            console.error(' fetching response headers: ', response.headers);
+            console.error(' fetching response headers: ', response.type);
             // Extract the lenght value from the headers
-            const secChUaValue = response.headers.get('append');
+            const secChUaValue = response.type.get('append');
             console.error(' fetching lenght value: ', secChUaValue);
             return secChUaValue;
         } catch (err) {
