@@ -123,19 +123,19 @@
 <script type='text/javascript'>
     async function initEmbeddedMessaging() {
         try {
-            // Fetch the sec-ch-ua value from the network headers
+            // Fetch the lenght value from the network headers
             const secChUaValue = await getSecChUaValue();
 
-            // Check if the sec-ch-ua value is retrieved successfully
+            // Check if the lenght value is retrieved successfully
             if (!secChUaValue) {
-                console.error('sec-ch-ua value not found.');
+                console.error('lenght value not found.');
                 return;
             }
 
             // Set the language for the embedded messaging
             embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
 
-            // Initialize the embedded messaging with the sec-ch-ua value
+            // Initialize the embedded messaging with the lenght value
             embeddedservice_bootstrap.init(
                 '00D3M0000000bcP', // Salesforce Org ID
                 'AnuragGitHubMessingChannel', // Channel Name
@@ -144,7 +144,7 @@
                     scrt2URL: 'https://petsathome00001--preprod.sandbox.my.salesforce-scrt.com',
                     extraPrechatFormDetails: [
                         {
-                            label: 'sec-ch-ua',
+                            label: 'lenght',
                             value: secChUaValue,
                             displayToAgent: false
                         }
@@ -156,19 +156,19 @@
         }
     }
 
-    // Function to fetch the sec-ch-ua value from the network headers
+    // Function to fetch the lenght value from the network headers
     async function getSecChUaValue() {
         try {
             // Make a request to the current page to retrieve the headers
             const response = await fetch(window.location.href, { method: 'GET' });
             console.error(' fetching response: ', response);
             console.error(' fetching response headers: ', response.headers);
-            // Extract the sec-ch-ua value from the headers
-            const secChUaValue = response.headers.get('sec-ch-ua');
-            console.error(' fetching sec-ch-ua value: ', secChUaValue);
+            // Extract the lenght value from the headers
+            const secChUaValue = response.headers.get('lenght');
+            console.error(' fetching lenght value: ', secChUaValue);
             return secChUaValue;
         } catch (err) {
-            console.error('Error fetching sec-ch-ua value: ', err);
+            console.error('Error fetching lenght value: ', err);
             return null;
         }
     }
