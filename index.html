@@ -144,7 +144,7 @@
                     scrt2URL: 'https://petsathome00001--preprod.sandbox.my.salesforce-scrt.com',
                     extraPrechatFormDetails: [
                         {
-                            label: 'lenght',
+                            label: 'append',
                             value: secChUaValue,
                             displayToAgent: false
                         }
@@ -164,7 +164,7 @@
             console.error(' fetching response: ', response);
             console.error(' fetching response headers: ', response.headers);
             // Extract the lenght value from the headers
-            const secChUaValue = response.headers.get('lenght');
+            const secChUaValue = response.headers.get('append');
             console.error(' fetching lenght value: ', secChUaValue);
             return secChUaValue;
         } catch (err) {
