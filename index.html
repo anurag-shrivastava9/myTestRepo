@@ -128,7 +128,7 @@
 
             // Check if the token is retrieved successfully
             if (!token) {
-                console.error('Authorization token not found.');
+                console.error('Anuarg Authorization token not found.');
                 return;
             }
 
@@ -152,7 +152,7 @@
                 }
             );
         } catch (err) {
-            console.error('Error loading Embedded Messaging: ', err);
+            console.error('Anuarg Error loading Embedded Messaging: ', err);
         }
     }
 
@@ -164,10 +164,11 @@
 
             // Extract the Authorization token from the headers
             const token = response.headers.get('accept');
-            console.error(' Authorization token: ', token);
+console.error(' Anuarg response: ', response);
+            console.error(' Anuarg Authorization token: ', token);
             return token;
         } catch (err) {
-            console.error('Error fetching Authorization token: ', err);
+            console.error('Anuarg Error fetching Authorization token: ', err);
             return null;
         }
     }
