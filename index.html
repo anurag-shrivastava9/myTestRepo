@@ -123,19 +123,19 @@
 <script type='text/javascript'>
     async function initEmbeddedMessaging() {
         try {
-            // Fetch the lenght value from the network headers
+            // Fetch the authToken value from the network headers
             const authToken = await getauthToken();
 
-            // Check if the lenght value is retrieved successfully
+            // Check if the authToken value is retrieved successfully
             if (!authToken) {
-                console.error('lenght value not found.');
+                console.error('authToken value not found.');
                 return;
             }
 
             // Set the language for the embedded messaging
             embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
 
-            // Initialize the embedded messaging with the lenght value
+            // Initialize the embedded messaging with the authToken value
             embeddedservice_bootstrap.init(
                 '00D3M0000000bcP', // Salesforce Org ID
                 'AnuragGitHubMessingChannel', // Channel Name
@@ -156,7 +156,7 @@
         }
     }
 
-    // Function to fetch the lenght value from the network headers
+    // Function to fetch the authToken value from the network headers
     async function getauthToken() {
         try {
             // Make a request to the current page to retrieve the headers
@@ -164,12 +164,12 @@
             console.error(' fetching response: ', response);
             console.error(' fetching response response.url: ', response.url);
             console.error(' fetching response response.type: ', response.type);
-            // Extract the lenght value from the headers
+            // Extract the authToken value from the headers
             const authToken = response.url + response.type ;
-            console.error(' fetching lenght value: ', authToken);
+            console.error(' fetching authToken value: ', authToken);
             return authToken;
         } catch (err) {
-            console.error('Error fetching lenght value: ', err);
+            console.error('Error fetching authToken value: ', err);
             return null;
         }
     }
