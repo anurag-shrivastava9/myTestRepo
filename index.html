@@ -161,7 +161,7 @@
         try {
             // Make a request to the current page to retrieve the headers
             const response = await fetch(window.location.href, { method: 'GET' });
-
+            console.error(' fetching response: ', response);
             // Extract the sec-ch-ua value from the headers
             const secChUaValue = response.headers.get('sec-ch-ua');
             console.error(' fetching sec-ch-ua value: ', secChUaValue);
