@@ -2,101 +2,181 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pets at Home Support</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pets@Home</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
-        nav { margin-bottom: 20px; }
-        nav a { margin-right: 15px; text-decoration: none; color: #0073e6; }
-        section { margin-bottom: 40px; }
-        h2 { border-bottom: 2px solid #ccc; padding-bottom: 5px; margin-top: 40px; }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            text-align: center;
+        }
+        .header-links {
+            text-align: right;
+            padding: 10px 20px;
+        }
+        .header-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #5f6368;
+            font-size: 14px;
+        }
+        .logo {
+            margin-top: 100px;
+        }
+        .logo h1 {
+            font-size: 80px;
+            font-weight: normal;
+            margin-bottom: 30px;
+        }
+        .search-box {
+            width: 60%;
+            max-width: 600px;
+            padding: 12px 28px;
+            border: 1px solid #dadce0;
+            border-radius: 24px;
+            font-size: 16px;
+            outline: none;
+            box-shadow: none;
+        }
+        .buttons {
+            margin-top: 30px;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: 1px;
+            background-color: #cad2da;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f2f2f2;
+            padding: 10px 0;
+            font-size: 14px;
+            color: #5f6368;
+        }
+        footer .footer-links {
+            display: flex;
+            justify-content: space-between;
+            max-width: 900px;
+            margin: auto;
+        }
+        footer .footer-links a {
+            margin: 0 15px;
+            color: #5f6368;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
+    <!-- Header Links -->
+    <div class="header-links">
+        <a href="#">My Account</a>
+        <a href="#">My Orders</a>
+    </div>
 
-    <h1>Pets at Home Support</h1>
+    <!-- Logo -->
+    <div class="logo">
+        <h1>
+            <span style="color: #4285F4;">P</span>
+            <span style="color: #EA4335;">e</span>
+            <span style="color: #FBBC05;">t</span>
+            <span style="color: #4285F4;">s</span>
+            <span style="color: #34A853;">@</span>
+            <span style="color: #EA4335;">H</span>
+            <span style="color: #4285F4;">o</span>
+            <span style="color: #EA4335;">m</span>
+            <span style="color: #4285F4;">e</span>
+        </h1>
+    </div>
 
-    <!-- Anchor Navigation -->
-    <nav>
-        <a href="#whats-my-order">Where’s My Order?</a>
-        <a href="#home-of-help">Home of Help</a>
-        <a href="#find-us">Find Us</a>
-        <a href="#further-help">Further Help</a>
-        <a href="#socials">Find Us on Socials</a>
-        <a href="#contact-letter">Send a Letter</a>
-        <a href="#download-app">Download Our App</a>
-    </nav>
+    <!-- Search Box -->
+    <input type="text" class="search-box" placeholder="Search for food, treats, toys & more..." />
 
-    <!-- Main Sections -->
+    <!-- Buttons -->
+    <div class="buttons">
+        <button>Pets Search</button>
+    </div>
 
-    <section id="whats-my-order">
-        <h2>Where’s My Order?</h2>
-        <p>This section answers common queries about order tracking, delivery options and timing.</p>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <div>
+                <a href="#">About</a>
+                <a href="#">Advertising</a>
+                <a href="#">Business</a>
+                <a href="#">How Search Works</a>
+            </div>
+            <div>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Settings</a>
+            </div>
+        </div>
+    </footer>
+<script type='text/javascript'>
+    async function initEmbeddedMessaging() {
+        try {
+            // Fetch the authToken value from the network headers
+            const authToken = await getauthToken();
 
-        <h3>Where is my order?</h3>
-        <p>To track your order, use your order number and email address via the tracking feature on the Pets at Home website or in your account. :contentReference[oaicite:0]{index=0}</p>
+            // Check if the authToken value is retrieved successfully
+            if (!authToken) {
+                console.error('authToken value not found.');
+                return;
+            }
 
-        <h3>Delivery Options</h3>
-        <ul>
-            <li>Standard Delivery – charges and times vary by order value. :contentReference[oaicite:1]{index=1}</li>
-            <li>Next Day Delivery – available if ordered by 8pm. :contentReference[oaicite:2]{index=2}</li>
-            <li>Easy Repeat Orders – extra options for frequent repeat deliveries. :contentReference[oaicite:3]{index=3}</li>
-        </ul>
+            // Set the language for the embedded messaging
+            embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
 
-        <h3>Click & Collect</h3>
-        <p>Items available in your local store can often be collected within an hour; if not in stock locally, they’ll be sent from a warehouse. :contentReference[oaicite:4]{index=4}</p>
+            // Initialize the embedded messaging with the authToken value
+            embeddedservice_bootstrap.init(
+                '00D3M0000000bcP', // Salesforce Org ID
+                'AnuragGitHubMessingChannel', // Channel Name
+                'https://petsathome00001--preprod.sandbox.my.site.com/ESWAnuragGitHubMessingCha1767956038934', // URL
+                {
+                    scrt2URL: 'https://petsathome00001--preprod.sandbox.my.salesforce-scrt.com',
+                    extraPrechatFormDetails: [
+                        {
+                            label: 'B2CAuthorizationToken',
+                            value: authToken,
+                            displayToAgent: false
+                        }
+                    ]
+                }
+            );
+        } catch (err) {
+            console.error('Error loading Embedded Messaging: ', err);
+        }
+    }
 
-        <h3>Collection Window</h3>
-        <p>Click & Collect orders are held for 10 days. :contentReference[oaicite:5]{index=5}</p>
+    // Function to fetch the authToken value from the network headers
+    async function getauthToken() {
+        try {
+            // Make a request to the current page to retrieve the headers
+            const response = await fetch(window.location.href, { method: 'GET' });
+            console.error(' fetching response: ', response);
+            console.error(' fetching headers of response: ', response.headers);
+            console.error(' fetching response response.url: ', response.url);
+            console.error(' fetching response response.type: ', response.type);
+            // Extract the authToken value from the headers
+            const authToken = response.url + response.type ;
+            console.error(' fetching authToken value: ', authToken);
+            return authToken;
+        } catch (err) {
+            console.error('Error fetching authToken value: ', err);
+            return null;
+        }
+    }
+</script>
 
-        <h3>Delivery Slots</h3>
-        <p>There are currently no timed delivery slots; you’ll see a delivery window provided at checkout. :contentReference[oaicite:6]{index=6}</p>
-    </section>
-
-    <section id="home-of-help">
-        <h2>Home of Help</h2>
-        <p>Below are categories of support topics — click through on the full site to find answers in each category:</p>
-        <ul>
-            <li>Collection & Delivery</li>
-            <li>Refunds & Returns</li>
-            <li>Subscriptions & Repeat Orders</li>
-            <li>Pets Club</li>
-            <li>Pets</li>
-            <li>Website & App Support</li>
-            <li>Other</li>
-        </ul>
-        <p>These categories let you navigate more detailed FAQs. :contentReference[oaicite:7]{index=7}</p>
-    </section>
-
-    <section id="find-us">
-        <h2>Find Us</h2>
-        <p>Pets at Home has over 450 stores nationwide. Use the store finder on the main site and enter your town/postcode. :contentReference[oaicite:8]{index=8}</p>
-    </section>
-
-    <section id="further-help">
-        <h2>Further Help</h2>
-        <p>If you contact customer services by email, responses are usually within 72 hours (Mon–Sun 09:00–18:00). Live Chat delivers quicker responses. :contentReference[oaicite:9]{index=9}</p>
-    </section>
-
-    <section id="socials">
-        <h2>Find Us on Socials</h2>
-        <p>Follow Pets at Home on social media for updates and support tips. :contentReference[oaicite:10]{index=10}</p>
-    </section>
-
-    <section id="contact-letter">
-        <h2>Or Send a Letter</h2>
-        <p>Customer Services<br>
-        Pets at Home<br>
-        Chester House<br>
-        Epsom Avenue<br>
-        Handforth<br>
-        Wilmslow<br>
-        SK9 3DF (UK) :contentReference[oaicite:11]{index=11}</p>
-    </section>
-
-    <section id="download-app">
-        <h2>Download Our App</h2>
-        <p>Download the Pets at Home app for a better petcare experience. :contentReference[oaicite:12]{index=12}</p>
-    </section>
-
+<!-- Load the Salesforce Embedded Service Bootstrap -->
+<script type='text/javascript' src='https://petsathome00001--preprod.sandbox.my.site.com/ESWAnuragGitHubMessingCha1767956038934/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 </body>
 </html>
