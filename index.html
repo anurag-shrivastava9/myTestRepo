@@ -140,7 +140,7 @@
             embeddedservice_bootstrap.settings.language = 'en_US';
 
             // Check if utilAPI and setSessionContext are available
-            if (embeddedservice_bootstrap.utilAPI && embeddedservice_bootstrap.utilAPI.setSessionContext) {
+            
                 embeddedservice_bootstrap.utilAPI.setSessionContext([
                     {
                         name: "B2CAuthorizationToken__c",
@@ -150,9 +150,7 @@
                         },
                     }
                 ]);
-            } else {
-                console.error('utilAPI or setSessionContext is not available on embeddedservice_bootstrap.');
-            }
+            
 
             embeddedservice_bootstrap.init(
                 '00D3M0000000bcP',
