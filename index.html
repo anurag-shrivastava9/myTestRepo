@@ -142,7 +142,7 @@
             console.error('AnuragTesting embeddedservice_bootstrap.utilAPI:', embeddedservice_bootstrap.utilAPI);
             console.error('AnuragTesting embeddedservice_bootstrap.utilAPI.setSessionContext:', embeddedservice_bootstrap.utilAPI.setSessionContext);
             // Check if utilAPI and setSessionContext are available
-            /*if (embeddedservice_bootstrap.utilAPI.setSessionContext) {
+            if (embeddedservice_bootstrap.utilAPI.setSessionContext) {
             embeddedservice_bootstrap.utilAPI.setSessionContext(                    
         {
                         name: "B2CAuthorizationToken",
@@ -153,7 +153,7 @@
                     });
             } else {
                 console.error('AnuragTesting utilAPI or setSessionContext is not available on embeddedservice_bootstrap.');
-            }*/
+            }
 
   window.addEventListener("onEmbeddedMessagingReady", () => {
     console.log("AnuragTesting Setting session context...");
