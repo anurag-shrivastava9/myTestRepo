@@ -155,27 +155,6 @@
                 console.error('AnuragTesting2 utilAPI or setSessionContext is not available on embeddedservice_bootstrap.');
             }
 
-  window.addEventListener("onEmbeddedMessagingReady", () => {
-    console.log("AnuragTesting Setting session context...");
-
-    embeddedservice_bootstrap.utilAPI.setSessionContext([
-      {
-        name: "B2CAuthorizationToken",
-        value: {
-          valueType: "StructuredValue",
-          value: {
-            // Your custom variable key and value
-            "B2CAuthorizationToken": "swxr1234"
-          }
-        }
-      }
-    ]).then(() => {
-      console.log("AnuragTesting Successfully set b2ccustomVariable.");
-    }).catch((err) => {
-      console.error("AnuragTesting Error setting session context:", err);
-    });
-  });
-
             embeddedservice_bootstrap.init(
                 '00D3M0000000bcP',
                 'AnuragGitHubMessingChannel',
