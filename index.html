@@ -123,14 +123,6 @@
 <script type='text/javascript'>
     async function initEmbeddedMessaging() {
         try {
-            // Fetch the authToken value from the network headers
-            const authToken = await getauthToken();
-
-            // Check if the authToken value is retrieved successfully
-            if (!authToken) {
-                console.error('authToken value not found.');
-                return;
-            }
 
             // Set the language for the embedded messaging
             embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
@@ -156,24 +148,17 @@
         }
     }
 
-    // Function to fetch the authToken value from the network headers
-    async function getauthToken() {
-        try {
-            // Make a request to the current page to retrieve the headers
-            const response = await fetch(window.location.href, { method: 'GET' });
-            console.error(' fetching response: ', response);
-            console.error(' fetching headers of response: ', response.headers);
-            console.error(' fetching response response.url: ', response.url);
-            console.error(' fetching response response.type: ', response.type);
-            // Extract the authToken value from the headers
-            const authToken = response.url + response.type ;
-            console.error(' fetching authToken value: ', authToken);
-            return authToken;
-        } catch (err) {
-            console.error('Error fetching authToken value: ', err);
-            return null;
-        }
-    }
+     // Pass the value in B2CAuthorizationToken__c variable
+        embeddedservice_bootstrap.utilAPI.setSessionContext([
+            {
+                name: "B2CAuthorizationToken__c",
+                value: {
+                    valueType: "String",
+                    value: "Anurag We have your-auth-token-here", // Replace with the actual token value
+                },
+            },
+        ]);
+
 </script>
 
 <!-- Load the Salesforce Embedded Service Bootstrap -->
