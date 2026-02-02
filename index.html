@@ -121,51 +121,67 @@
         </div>
     </footer>
 <script type='text/javascript'>
-async function initEmbeddedMessaging() {
-    try {
-        const authToken = await getAuthToken();
+    async function initEmbeddedMessaging() {
+        try {
+            // Wait for the authToken to be fetched
+            const authToken = await getAuthToken();
 
-        if (!authToken) {
-            console.error('authToken value not found.');
-            return;
-        }
-
-        embeddedservice_bootstrap.settings.language = 'en_US';
-
-        // Check if utilAPI and setSessionContext are available
-        if (embeddedservice_bootstrap.utilAPI && embeddedservice_bootstrap.utilAPI.setSessionContext) {
-            embeddedservice_bootstrap.utilAPI.setSessionContext([
-                {
-                    name: "B2CAuthorizationToken__c",
-                    value: {
-                        valueType: "String",
-                        value: authToken,
-                    },
-                }
-            ]);
-        } else {
-            console.error('utilAPI or setSessionContext is not available on embeddedservice_bootstrap.');
-        }
-
-        embeddedservice_bootstrap.init(
-            '00D3M0000000bcP',
-            'AnuragGitHubMessingChannel',
-            'https://petsathome00001--preprod.sandbox.my.site.com/ESWAnuragGitHubMessingCha1767956038934',
-            {
-                scrt2URL: 'https://petsathome00001--preprod.sandbox.my.salesforce-scrt.com'
+            if (!authToken) {
+                console.error('authToken value not found.');
+                return;
             }
-        );
-    } catch (err) {
-        console.error('Error loading Embedded Messaging: ', err);
+
+            // Ensure embeddedservice_bootstrap is defined before using it
+            if (typeof embeddedservice_bootstrap === 'undefined') {
+                console.error('embeddedservice_bootstrap is not defined.');
+                return;
+            }
+
+            embeddedservice_bootstrap.settings.language = 'en_US';
+
+            // Check if utilAPI and setSessionContext are available
+            if (embeddedservice_bootstrap.utilAPI && embeddedservice_bootstrap.utilAPI.setSessionContext) {
+                embeddedservice_bootstrap.utilAPI.setSessionContext([
+                    {
+                        name: "B2CAuthorizationToken__c",
+                        value: {
+                            valueType: "String",
+                            value: authToken,
+                        },
+                    }
+                ]);
+            } else {
+                console.error('utilAPI or setSessionContext is not available on embeddedservice_bootstrap.');
+            }
+
+            embeddedservice_bootstrap.init(
+                '00D3M0000000bcP',
+                'AnuragGitHubMessingChannel',
+                'https://petsathome00001--preprod.sandbox.my.site.com/ESWAnuragGitHubMessingCha1767956038934',
+                {
+                    scrt2URL: 'https://petsathome00001--preprod.sandbox.my.salesforce-scrt.com'
+                }
+            );
+        } catch (err) {
+            console.error('Error loading Embedded Messaging: ', err);
+        }
     }
-}
 
     // Mock function to simulate fetching the authToken
     async function getAuthToken() {
         // Replace this with the actual logic to fetch the authToken
         return "sampleAuthToken12345";
     }
+
+    // Wait for the embeddedservice_bootstrap script to load before initializing
+    window.addEventListener('load', () => {
+        if (typeof embeddedservice_bootstrap !== 'undefined') {
+            initEmbeddedMessaging();
+        } else {
+            console.error('embeddedservice_bootstrap script did not load.');
+        }
+    });
 </script>
-<script type='text/javascript' src='https://petsathome00001--preprod.sandbox.my.site.com/ESWAnuragGitHubMessingCha1767956038934/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+<script type='text/javascript' src='https://petsathome00001--preprod.sandbox.my.site.com/ESWAnuragGitHubMessingCha1767956038934/assets/js/bootstrap.min.js'></script>
 </body>
 </html>
