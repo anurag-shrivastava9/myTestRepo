@@ -121,20 +121,19 @@
         </div>
     </footer>
 <script type='text/javascript'>
-    async function initEmbeddedMessaging() {
-        try {
-            // Fetch the authToken value from the network headers or another source
-            const authToken = await getAuthToken();
+async function initEmbeddedMessaging() {
+    try {
+        const authToken = await getAuthToken();
 
-            // Check if the authToken value is retrieved successfully
-            if (!authToken) {
-                console.error('authToken value not found.');
-                return;
-            }
+        if (!authToken) {
+            console.error('authToken value not found.');
+            return;
+        }
 
-            embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+        embeddedservice_bootstrap.settings.language = 'en_US';
 
-            // Set the custom field B2CAuthorizationToken__c on the MessagingSession
+        // Check if utilAPI and setSessionContext are available
+        if (embeddedservice_bootstrap.utilAPI && embeddedservice_bootstrap.utilAPI.setSessionContext) {
             embeddedservice_bootstrap.utilAPI.setSessionContext([
                 {
                     name: "B2CAuthorizationToken__c",
@@ -144,19 +143,22 @@
                     },
                 }
             ]);
-
-            embeddedservice_bootstrap.init(
-                '00D3M0000000bcP',
-                'AnuragGitHubMessingChannel',
-                'https://petsathome00001--preprod.sandbox.my.site.com/ESWAnuragGitHubMessingCha1767956038934',
-                {
-                    scrt2URL: 'https://petsathome00001--preprod.sandbox.my.salesforce-scrt.com'
-                }
-            );
-        } catch (err) {
-            console.error('Error loading Embedded Messaging: ', err);
+        } else {
+            console.error('utilAPI or setSessionContext is not available on embeddedservice_bootstrap.');
         }
+
+        embeddedservice_bootstrap.init(
+            '00D3M0000000bcP',
+            'AnuragGitHubMessingChannel',
+            'https://petsathome00001--preprod.sandbox.my.site.com/ESWAnuragGitHubMessingCha1767956038934',
+            {
+                scrt2URL: 'https://petsathome00001--preprod.sandbox.my.salesforce-scrt.com'
+            }
+        );
+    } catch (err) {
+        console.error('Error loading Embedded Messaging: ', err);
     }
+}
 
     // Mock function to simulate fetching the authToken
     async function getAuthToken() {
