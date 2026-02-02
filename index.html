@@ -141,15 +141,8 @@
 
             // Check if utilAPI and setSessionContext are available
             if (embeddedservice_bootstrap.utilAPI && embeddedservice_bootstrap.utilAPI.setSessionContext) {
-                embeddedservice_bootstrap.utilAPI.setSessionContext([
-                    {
-                        name: "B2CAuthorizationToken",
-                        value: {
-                            valueType: "String",
-                            value: authToken,
-                        },
-                    }
-                ]);
+            embeddedservice_bootstrap.utilAPI.setSessionContext({
+            B2CAuthorizationToken: "sampleAuthToken12345"                });
             } else {
                 console.error('utilAPI or setSessionContext is not available on embeddedservice_bootstrap.');
             }
