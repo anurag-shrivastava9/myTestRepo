@@ -127,18 +127,18 @@
             const authToken = await getAuthToken();
 
             if (!authToken) {
-                console.error('authToken value not found.');
+                console.error('AnuragTesting3 authToken value not found.');
                 return;
             }
 
             // Ensure embeddedservice_bootstrap is defined before using it
             if (typeof embeddedservice_bootstrap === 'undefined') {
-                console.error('embeddedservice_bootstrap is not defined.');
+                console.error('AnuragTesting3 embeddedservice_bootstrap is not defined.');
                 return;
             }
 
             embeddedservice_bootstrap.settings.language = 'en_US';
-            console.error('AnuragTesting2 embeddedservice_bootstrap:', embeddedservice_bootstrap);
+            //console.error('AnuragTesting3 embeddedservice_bootstrap:', embeddedservice_bootstrap);
             //console.error('AnuragTesting embeddedservice_bootstrap.utilAPI:', embeddedservice_bootstrap.utilAPI);
             //console.error('AnuragTesting embeddedservice_bootstrap.utilAPI.setSessionContext:', embeddedservice_bootstrap.utilAPI.setSessionContext);
             // Check if utilAPI and setSessionContext are available
@@ -152,7 +152,7 @@
                         }
                     });
             } else {
-                console.error('AnuragTesting2 utilAPI or setSessionContext is not available on embeddedservice_bootstrap.');
+                console.error('AnuragTesting3 utilAPI or setSessionContext is not available on embeddedservice_bootstrap.');
             }
 
             embeddedservice_bootstrap.init(
@@ -164,7 +164,7 @@
                 }
             );
         } catch (err) {
-            console.error('Error loading Embedded Messaging: ', err);
+            console.error('AnuragTesting3 Error loading Embedded Messaging: ', err);
         }
     }
 
