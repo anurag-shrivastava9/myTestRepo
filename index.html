@@ -142,7 +142,7 @@
             console.error('AnuragTesting embeddedservice_bootstrap.utilAPI:', embeddedservice_bootstrap.utilAPI);
             console.error('AnuragTesting embeddedservice_bootstrap.utilAPI.setSessionContext:', embeddedservice_bootstrap.utilAPI.setSessionContext);
             // Check if utilAPI and setSessionContext are available
-            if (embeddedservice_bootstrap.utilAPI.setSessionContext) {
+            /*if (embeddedservice_bootstrap.utilAPI.setSessionContext) {
             embeddedservice_bootstrap.utilAPI.setSessionContext(                    
         {
                         name: "B2CAuthorizationToken",
@@ -153,7 +153,28 @@
                     });
             } else {
                 console.error('AnuragTesting utilAPI or setSessionContext is not available on embeddedservice_bootstrap.');
-            }
+            }*/
+
+  window.addEventListener("onEmbeddedMessagingReady", () => {
+    console.log("AnuragTesting Setting session context...");
+
+    embeddedservice_bootstrap.utilAPI.setSessionContext([
+      {
+        name: "B2CAuthorizationToken",
+        value: {
+          valueType: "StructuredValue",
+          value: {
+            // Your custom variable key and value
+            "B2CAuthorizationToken": "swxr1234"
+          }
+        }
+      }
+    ]).then(() => {
+      console.log("AnuragTesting Successfully set b2ccustomVariable.");
+    }).catch((err) => {
+      console.error("AnuragTesting Error setting session context:", err);
+    });
+  });
 
             embeddedservice_bootstrap.init(
                 '00D3M0000000bcP',
