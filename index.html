@@ -123,24 +123,34 @@
 <script type='text/javascript'>
     async function initEmbeddedMessaging() {
         try {
+            // Fetch the authToken value from the network headers or another source
+            const authToken = await getAuthToken();
 
-            // Set the language for the embedded messaging
+            // Check if the authToken value is retrieved successfully
+            if (!authToken) {
+                console.error('authToken value not found.');
+                return;
+            }
+
             embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
 
-            // Initialize the embedded messaging with the authToken value
-            embeddedservice_bootstrap.init(
-                '00D3M0000000bcP', // Salesforce Org ID
-                'AnuragGitHubMessingChannel', // Channel Name
-                'https://petsathome00001--preprod.sandbox.my.site.com/ESWAnuragGitHubMessingCha1767956038934', // URL
+            // Set the custom field B2CAuthorizationToken__c on the MessagingSession
+            embeddedservice_bootstrap.utilAPI.setSessionContext([
                 {
-                    scrt2URL: 'https://petsathome00001--preprod.sandbox.my.salesforce-scrt.com',
-                    extraPrechatFormDetails: [
-                        {
-                            label: 'B2CAuthorizationToken',
-                            value: authToken,
-                            displayToAgent: false
-                        }
-                    ]
+                    name: "B2CAuthorizationToken__c",
+                    value: {
+                        valueType: "String",
+                        value: authToken,
+                    },
+                }
+            ]);
+
+            embeddedservice_bootstrap.init(
+                '00D3M0000000bcP',
+                'AnuragGitHubMessingChannel',
+                'https://petsathome00001--preprod.sandbox.my.site.com/ESWAnuragGitHubMessingCha1767956038934',
+                {
+                    scrt2URL: 'https://petsathome00001--preprod.sandbox.my.salesforce-scrt.com'
                 }
             );
         } catch (err) {
@@ -148,20 +158,12 @@
         }
     }
 
-     // Pass the value in B2CAuthorizationToken__c variable
-        embeddedservice_bootstrap.utilAPI.setSessionContext([
-            {
-                name: "B2CAuthorizationToken__c",
-                value: {
-                    valueType: "String",
-                    value: "Anurag We have your-auth-token-here", // Replace with the actual token value
-                },
-            },
-        ]);
-
+    // Mock function to simulate fetching the authToken
+    async function getAuthToken() {
+        // Replace this with the actual logic to fetch the authToken
+        return "sampleAuthToken12345";
+    }
 </script>
-
-<!-- Load the Salesforce Embedded Service Bootstrap -->
 <script type='text/javascript' src='https://petsathome00001--preprod.sandbox.my.site.com/ESWAnuragGitHubMessingCha1767956038934/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 </body>
 </html>
