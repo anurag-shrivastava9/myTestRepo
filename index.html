@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pets@Home</title>
+    <link rel="stylesheet" type="text/css" href="https://carnivaluk--crmsdev.sandbox.my.salesforce.com/prefcenter/preference-center-1.2.0/css/pref-center-slds.css">
+    <title>Test@Page</title>
     <style>
         body {
             margin: 0;
@@ -84,24 +85,24 @@
     <!-- Logo -->
     <div class="logo">
         <h1>
-            <span style="color: #4285F4;">P</span>
+            <span style="color: #4285F4;">T</span>
             <span style="color: #EA4335;">e</span>
-            <span style="color: #FBBC05;">t</span>
-            <span style="color: #4285F4;">s</span>
+            <span style="color: #FBBC05;">s</span>
+            <span style="color: #4285F4;">t</span>
             <span style="color: #34A853;">@</span>
-            <span style="color: #EA4335;">H</span>
-            <span style="color: #4285F4;">o</span>
-            <span style="color: #EA4335;">m</span>
+            <span style="color: #EA4335;">P</span>
+            <span style="color: #4285F4;">a</span>
+            <span style="color: #EA4335;">g</span>
             <span style="color: #4285F4;">e</span>
         </h1>
     </div>
 
     <!-- Search Box -->
-    <input type="text" class="search-box" placeholder="Search for food, treats, toys & more..." />
+    <input type="text" class="search-box" placeholder="Search for anyting" />
 
     <!-- Buttons -->
     <div class="buttons">
-        <button>Pets Search</button>
+        <button>Search</button>
     </div>
 
     <!-- Footer -->
@@ -120,69 +121,10 @@
             </div>
         </div>
     </footer>
-<script type='text/javascript'>
-    async function initEmbeddedMessaging() {
-        try {
-            // Wait for the authToken to be fetched
-            const authToken = await getAuthToken();
-
-            if (!authToken) {
-                console.error('AnuragTesting4 authToken value not found.');
-                return;
-            }
-
-            // Ensure embeddedservice_bootstrap is defined before using it
-            if (typeof embeddedservice_bootstrap === 'undefined') {
-                console.error('AnuragTesting4 embeddedservice_bootstrap is not defined.');
-                return;
-            }
-
-            embeddedservice_bootstrap.settings.language = 'en_US';
-            console.error('AnuragTesting4 embeddedservice_bootstrap:', embeddedservice_bootstrap);
-            console.error('AnuragTesting4 embeddedservice_bootstrap.utilAPI:', embeddedservice_bootstrap.utilAPI);
-            //console.error('AnuragTesting embeddedservice_bootstrap.utilAPI.setSessionContext:', embeddedservice_bootstrap.utilAPI.setSessionContext);
-            // Check if utilAPI and setSessionContext are available
-            if (window.embeddedservice_bootstrap.utilAPI && window.embeddedservice_bootstrap.utilAPI.setSessionContext) {
-            window.embeddedservice_bootstrap.utilAPI.setSessionContext(                    
-        {
-                        name: "B2CAuthorizationToken",
-                        value: {
-                            valueType: "String",
-                            value: authToken
-                        }
-                    });
-            } else {
-                console.error('AnuragTesting4 utilAPI or setSessionContext is not available on embeddedservice_bootstrap.');
-            }
-
-            embeddedservice_bootstrap.init(
-                '00D3M0000000bcP',
-                'AnuragGitHubMessingChannel',
-                'https://petsathome00001--preprod.sandbox.my.site.com/ESWAnuragGitHubMessingCha1767956038934',
-                {
-                    scrt2URL: 'https://petsathome00001--preprod.sandbox.my.salesforce-scrt.com'
-                }
-            );
-        } catch (err) {
-            console.error('AnuragTesting4 Error loading Embedded Messaging: ', err);
-        }
-    }
-
-    // Mock function to simulate fetching the authToken
-    async function getAuthToken() {
-        // Replace this with the actual logic to fetch the authToken
-        return "sampleAuthToken12345";
-    }
-
-    // Wait for the embeddedservice_bootstrap script to load before initializing
-    window.addEventListener('load', () => {
-        if (typeof embeddedservice_bootstrap !== 'undefined') {
-            initEmbeddedMessaging();
-        } else {
-            console.error('embeddedservice_bootstrap script did not load.');
-        }
-    });
-</script>
-<script type='text/javascript' src='https://petsathome00001--preprod.sandbox.my.site.com/ESWAnuragGitHubMessingCha1767956038934/assets/js/bootstrap.min.js'></script>
+<div id="pref-center-main"></div>
+<script id="preference-center" src="https://carnivaluk--crmsdev.sandbox.my.salesforce.com/prefcenter/preference-center-1.2.0/js/main.js" 
+  pref-center-host="https://carnivaluk--crmsdev.sandbox.my.salesforce.com"
+  pref-center-name="Cunard_Newsletter_Subscription_Form"
+  pref-center-param="pctoken"></script>
 </body>
 </html>
