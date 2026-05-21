@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="https://carnivaluk--crmsdev.sandbox.my.salesforce.com/prefcenter/preference-center-1.2.0/css/pref-center-slds.css">
     <title>Test@Page</title>
     <style>
         body {
@@ -97,7 +98,7 @@
     </div>
 
     <!-- Search Box -->
-    <input type="text" class="search-box" placeholder="Search for anything" />
+    <input type="text" class="search-box" placeholder="Search for anyting" />
 
     <!-- Buttons -->
     <div class="buttons">
@@ -120,76 +121,10 @@
             </div>
         </div>
     </footer>
-<div id="pref-center-main" style="max-width: 980px; margin: 32px auto 120px; padding: 0 16px;">
-    <div id="pref-center-container" style="text-align: center; color: #5f6368; padding: 40px 0;">
-        Loading Preference Center...
-    </div>
-</div>
-
-<script>
-/**
- * Load the Salesforce Preference Center from the proxy server.
- * 
- * The proxy avoids CORS and CSP frame-ancestors restrictions.
- * Update PROXY_URL to match your deployed proxy server.
- */
-
-// CONFIGURATION: Update this to your deployed proxy server URL
-const PROXY_URL = 'http://localhost:3000'; // For local testing
-// const PROXY_URL = 'https://my-proxy.vercel.app'; // For production (Vercel example)
-// const PROXY_URL = 'https://my-proxy.herokuapp.com'; // For production (Heroku example)
-
-const PREF_CENTER_NAME = 'Cunard_Newsletter_Apex';
-const CONTAINER_ID = 'pref-center-container';
-
-async function loadPreferenceCenter() {
-  const container = document.getElementById(CONTAINER_ID);
-  
-  try {
-    const url = `${PROXY_URL}/api/preference-center?prefCenter=${encodeURIComponent(PREF_CENTER_NAME)}`;
-    console.log(`[PC Loader] Fetching from proxy: ${url}`);
-    
-    const response = await fetch(url, {
-      method: 'GET',
-      headers: {
-        'Accept': 'text/html'
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error(`Proxy returned ${response.status}: ${response.statusText}`);
-    }
-
-    const html = await response.text();
-    container.innerHTML = html;
-    console.log('[PC Loader] Preference Center loaded successfully');
-  } catch (err) {
-    console.error('[PC Loader] Error:', err.message);
-    container.innerHTML = `
-      <div style="background: #fce5e5; border: 1px solid #f44336; border-radius: 4px; padding: 16px; color: #c62828;">
-        <strong>Unable to load Preference Center</strong>
-        <p style="margin: 8px 0 0 0; font-size: 13px;">
-          ${err.message}
-        </p>
-        <p style="margin: 8px 0 0 0; font-size: 13px;">
-          <strong>Make sure:</strong>
-          <br>1. Proxy server is running (or deployed)
-          <br>2. PROXY_URL is set correctly in this script
-          <br>3. The proxy server has internet access to Salesforce
-          <br><br>
-          <a href="https://carnivaluk--crmsdev.sandbox.my.salesforce.com/services/PreferenceCenter?prefCenter=Cunard_Newsletter_Apex" target="_blank" rel="noopener noreferrer" style="color: #1976d2;">Open Preference Center directly</a>
-        </p>
-      </div>
-    `;
-  }
-}
-
-// Load preference center when the page is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', loadPreferenceCenter);
-} else {
-  loadPreferenceCenter();
-}
-</script>
+<div id="pref-center-main"></div>
+<script id="preference-center" src="https://carnivaluk--crmsdev.sandbox.my.salesforce.com/prefcenter/preference-center-1.2.0/js/main.js" 
+  pref-center-host="https://carnivaluk--crmsdev.sandbox.my.salesforce.com"
+  pref-center-name="Cunard_Newsletter_Apex"
+  pref-center-param="pctoken"></script>
 </body>
 </html>
