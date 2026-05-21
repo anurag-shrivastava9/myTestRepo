@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="https://carnivaluk--crmsdev.sandbox.my.salesforce.com/prefcenter/preference-center-1.2.0/css/pref-center-slds.css">
     <title>Test@Page</title>
     <style>
         body {
@@ -98,7 +97,7 @@
     </div>
 
     <!-- Search Box -->
-    <input type="text" class="search-box" placeholder="Search for anyting" />
+    <input type="text" class="search-box" placeholder="Search for anything" />
 
     <!-- Buttons -->
     <div class="buttons">
@@ -121,10 +120,19 @@
             </div>
         </div>
     </footer>
-<div id="pref-center-main"></div>
-<script id="preference-center" src="https://carnivaluk--crmsdev.sandbox.my.salesforce.com/prefcenter/preference-center-1.2.0/js/main.js" 
-  pref-center-host="https://carnivaluk--crmsdev.sandbox.my.salesforce.com"
-  pref-center-name="Cunard_Newsletter_Apex"
-  pref-center-param="pctoken"></script>
+<div id="pref-center-main" style="max-width: 980px; margin: 32px auto 120px; padding: 0 16px;">
+    <!-- Salesforce JS embed does cross-origin fetch and fails when CORS headers are missing. -->
+    <iframe
+        title="Cunard Newsletter Preference Center"
+        src="https://carnivaluk--crmsdev.sandbox.my.salesforce.com/services/PreferenceCenter?prefCenter=Cunard_Newsletter_Apex"
+        style="width: 100%; min-height: 900px; border: 1px solid #dadce0; border-radius: 12px; background: #fff;"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin">
+    </iframe>
+    <p style="font-size: 13px; color: #5f6368; margin-top: 10px;">
+        If the form does not appear, open it directly:
+        <a href="https://carnivaluk--crmsdev.sandbox.my.salesforce.com/services/PreferenceCenter?prefCenter=Cunard_Newsletter_Apex" target="_blank" rel="noopener noreferrer">Open Preference Center</a>
+    </p>
+</div>
 </body>
 </html>
